@@ -13,6 +13,9 @@ export const Layout = ({ children }) => {
 
 export const LayoutWrapper = styled.div`
   padding: 10px;
+  overflow: hidden;
+  height: 100svh;
+  box-sizing: border-box;
 `;
 
 export const Content = styled.div`

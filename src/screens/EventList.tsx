@@ -10,7 +10,6 @@ export const EventList = () => {
         <EventImage>
           <img src="./mapIcon.png" alt="icon" width={30} />
         </EventImage>
-
         <div>
           <div>{event.name}</div>
           <div>{event.description}</div>
@@ -22,10 +21,11 @@ export const EventList = () => {
   return (
     <div>
       <p>Список событий</p>
-      <button onClick={() => WebApp.showAlert(`Hello World! `)}>
-        Show Alert Список событий
-      </button>
       <div>{EventData.map((event) => eventTpl(event))}</div>
+      <br />
+      <button onClick={() => WebApp.showAlert(`Hello World! `)}>
+        тестовый алерт
+      </button>
     </div>
   );
 };
