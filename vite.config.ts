@@ -7,7 +7,6 @@ import basicSsl from "@vitejs/plugin-basic-ssl";
 dns.setDefaultResultOrder("verbatim");
 
 // https://vitejs.dev/config/
-// eslint-disable-next-line import/no-default-export
 export default defineConfig({
   plugins: [
     tsconfigPaths(),
@@ -53,5 +52,5 @@ export default defineConfig({
   define: {
     "process.env": process.env,
   },
-  base: "./",
+  base: "/shakerApp/",
 });
