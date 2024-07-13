@@ -19,5 +19,5 @@ export const LayoutWrapper = styled.div`
 `;
 
 export const Content = styled.div`
-  min-height: calc(100vh - 80px);
+  min-height: calc(90vh - 80px);
 `;

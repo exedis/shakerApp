@@ -11,7 +11,7 @@ export const Main = () => {
     <div>
       <p>Карта событий</p>
       <YMaps query={{ apikey: "cf9ae4bb-ef7b-4c05-acd6-cfa7ee09955e" }}>
-        <Map defaultState={defaultState} width={"100%"} height={"100%"}>
+        <Map defaultState={defaultState} width={"100%"} height={500}>
           {EventData.map((event) => (
             <Placemark key={event.id} geometry={event.coords} />
           ))}
