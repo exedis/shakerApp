@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Routes as Switch } from "react-router-dom";
 import { Path } from "@consts/path";
-import { Main } from "@screens/Main";
+import { Main } from "@src/routes/Main";
 import { BrowserRouter as Router } from "react-router-dom";
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
-import { EventList } from "@screens/EventList";
+import { EventList } from "@src/routes/EventList";
 
 function App() {
   return (
