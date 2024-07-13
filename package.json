@@ -12,6 +12,8 @@
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.24.7",
     "@emotion/babel-plugin": "^11.11.0",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@pbe/react-yandex-maps": "^1.2.5",
     "@tonconnect/ui-react": "^2.0.6",
     "@twa-dev/sdk": "^7.0.0",
