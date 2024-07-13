@@ -4,6 +4,7 @@ import { Path } from "@consts/path";
 import { Main } from "@screens/Main";
 import { BrowserRouter as Router } from "react-router-dom";
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
+import { EventList } from "@screens/EventList";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Router>
         <Switch>
           <Route path={Path.TO_HOME} element={<Main />} />
+          <Route path={Path.TO_EVENTS} element={<EventList />} />
         </Switch>
       </Router>
     </TonConnectUIProvider>
