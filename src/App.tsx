@@ -7,7 +7,7 @@ import { TonConnectUIProvider } from "@tonconnect/ui-react";
 
 function App() {
   return (
-    <TonConnectUIProvider manifestUrl="https://<YOUR_APP_URL>/tonconnect-manifest.json">
+    <TonConnectUIProvider manifestUrl="https://exedis.github.io/shakerApp/manifest.json">
       <Router>
         <Switch>
           <Route path={Path.TO_HOME} element={<Main />} />
