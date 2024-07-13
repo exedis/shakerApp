@@ -9,7 +9,7 @@ import { EventList } from "@screens/EventList";
 function App() {
   return (
     <TonConnectUIProvider manifestUrl="https://exedis.github.io/shakerApp/manifest.json">
-      <Router>
+      <Router basename="/shakerApp/">
         <Switch>
           <Route path={Path.TO_HOME} element={<Main />} />
           <Route path={Path.TO_EVENTS} element={<EventList />} />
