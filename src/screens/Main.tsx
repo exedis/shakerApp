@@ -1,6 +1,6 @@
 import React from "react";
-import { YMaps, Map, Placemark } from "react-yandex-maps";
 import WebApp from "@twa-dev/sdk";
+import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 
 export const Main = () => {
   const defaultState = {
@@ -10,14 +10,14 @@ export const Main = () => {
   return (
     <div>
       <p>Главная</p>
-      <YMaps>
+      <button onClick={() => WebApp.showAlert(`Hello World! `)}>
+        Show Alert
+      </button>
+      <YMaps query={{ apikey: "cf9ae4bb-ef7b-4c05-acd6-cfa7ee09955e" }}>
         <Map defaultState={defaultState}>
           <Placemark geometry={[55.684758, 37.738521]} />
         </Map>
       </YMaps>
-      <button onClick={() => WebApp.showAlert(`Hello World! `)}>
-        Show Alert
-      </button>
     </div>
   );
 };

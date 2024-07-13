@@ -12,6 +12,7 @@
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.24.7",
     "@emotion/babel-plugin": "^11.11.0",
+    "@pbe/react-yandex-maps": "^1.2.5",
     "@tonconnect/ui-react": "^2.0.6",
     "@vitejs/plugin-basic-ssl": "^1.1.0",
     "react": "^18.3.1",
