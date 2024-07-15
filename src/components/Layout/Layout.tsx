@@ -18,7 +18,7 @@ export const LayoutWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 10px;
-  height: 100dvh;
+  height: 96dvh;
   box-sizing: border-box;
 `;
 
@@ -27,4 +27,5 @@ export const Content = styled.div<{
 }>`
   height: ${({ windowHeight }) => `calc(${windowHeight} - 80)`};
   overscroll-behavior: contain;
+  overflow-y: scroll;
 `;

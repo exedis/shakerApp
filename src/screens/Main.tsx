@@ -28,7 +28,12 @@ export const Main = () => {
             <Placemark
               key={event.id}
               geometry={event.coords}
-              onClick={() => WebApp.showAlert(`Событие ${event.name} `)}
+              onClick={() =>
+                WebApp.showPopup({
+                  title: `Событие ${event.name} `,
+                  message: event.description,
+                })
+              }
             />
           ))}
           <ZoomControl options={{ position: { left: 10, top: 50 } }} />

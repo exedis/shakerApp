@@ -9,10 +9,13 @@ import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import { Layout } from "@components/Layout/Layout";
 import { Profile } from "@screens/Profile";
+import WebApp from "@twa-dev/sdk";
 
 const cacheEmotion = createCache({
   key: "shaker",
 });
+WebApp.isExpanded;
+WebApp.disableClosingConfirmation;
 
 function App() {
   return (
