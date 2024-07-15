@@ -8,6 +8,7 @@ import { EventList } from "@screens/EventList";
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import { Layout } from "@components/Layout/Layout";
+import { Profile } from "@screens/Profile";
 
 const cacheEmotion = createCache({
   key: "shaker",
@@ -32,6 +33,14 @@ function App() {
               element={
                 <Layout>
                   <EventList />
+                </Layout>
+              }
+            />
+            <Route
+              path={Path.TO_PROFILE}
+              element={
+                <Layout>
+                  <Profile />
                 </Layout>
               }
             />

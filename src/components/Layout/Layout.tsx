@@ -6,24 +6,25 @@ import WebApp from "@twa-dev/sdk";
 export const Layout = ({ children }) => {
   const viewportStableHeight = WebApp.viewportStableHeight;
   return (
-    <LayoutWrapper windowHeight={viewportStableHeight}>
-      <Content>{children}</Content>
+    <LayoutWrapper>
+      <Content windowHeight={viewportStableHeight}>{children}</Content>
       <Navbar />
     </LayoutWrapper>
   );
 };
 
-export const LayoutWrapper = styled.div<{
-  windowHeight: number;
-}>`
+export const LayoutWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 10px;
-  overflow: hidden;
-  height: ${({ windowHeight }) => windowHeight}px;
-
+  height: 100dvh;
   box-sizing: border-box;
 `;
 
-export const Content = styled.div`
-  height: calc(96vh - 80px);
+export const Content = styled.div<{
+  windowHeight: number;
+}>`
+  height: ${({ windowHeight }) => `calc(${windowHeight} - 80)`};
   overscroll-behavior: contain;
 `;

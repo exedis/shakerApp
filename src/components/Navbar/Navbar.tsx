@@ -7,6 +7,7 @@ export const Navbar = () => {
     <NavbarWrapper>
       <LinkStyled to={Path.TO_HOME}>События на карте</LinkStyled>
       <LinkStyled to={Path.TO_EVENTS}>События списком</LinkStyled>
+      <LinkStyled to={Path.TO_PROFILE}>Профиль</LinkStyled>
     </NavbarWrapper>
   );
 };

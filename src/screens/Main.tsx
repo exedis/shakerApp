@@ -25,7 +25,11 @@ export const Main = () => {
       <YMaps query={{ apikey: "cf9ae4bb-ef7b-4c05-acd6-cfa7ee09955e" }}>
         <Map defaultState={defaultState} width={"100%"} height={mapHeight}>
           {EventData.map((event) => (
-            <Placemark key={event.id} geometry={event.coords} />
+            <Placemark
+              key={event.id}
+              geometry={event.coords}
+              onClick={() => WebApp.showAlert(`Событие ${event.name} `)}
+            />
           ))}
           <ZoomControl options={{ position: { left: 10, top: 50 } }} />
           <GeolocationControl options={{ float: "left" }} />
