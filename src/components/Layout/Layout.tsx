@@ -1,23 +1,29 @@
 import { Navbar } from "@components/Navbar/Navbar";
 import styled from "@emotion/styled";
 import React from "react";
+import WebApp from "@twa-dev/sdk";
 
 export const Layout = ({ children }) => {
+  const viewportStableHeight = WebApp.viewportStableHeight;
   return (
-    <LayoutWrapper>
+    <LayoutWrapper windowHeight={viewportStableHeight}>
       <Content>{children}</Content>
       <Navbar />
     </LayoutWrapper>
   );
 };
 
-export const LayoutWrapper = styled.div`
+export const LayoutWrapper = styled.div<{
+  windowHeight: number;
+}>`
   padding: 10px;
   overflow: hidden;
-  height: 100svh;
+  height: ${({ windowHeight }) => windowHeight}px;
+
   box-sizing: border-box;
 `;
 
 export const Content = styled.div`
-  min-height: calc(90vh - 80px);
+  height: calc(96vh - 80px);
+  overscroll-behavior: contain;
 `;
