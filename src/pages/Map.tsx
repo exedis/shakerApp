@@ -95,15 +95,31 @@ export const MapLayout = observer(() => {
 
   const [myPosition, setMyPosition] = useState([]);
   const [myPositionError, setMyPositionError] = useState("");
-  const getMyPosition = () => {
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        setMyPosition([pos.coords.latitude, pos.coords.longitude]);
-      },
-      (err) => setMyPositionError(`Ошибка(${err.code}): ${err.message}`),
-      { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true }
-    );
-  };
+
+  function getMyPosition() {
+    if (navigator.geolocation) {
+      navigator.permissions
+        .query({ name: "geolocation" })
+        .then((permissionStatus) => {
+          if (permissionStatus.state === "denied") {
+            WebApp.showAlert("Please allow location access.");
+
+            window.location.href = "app-settings:location";
+          } else {
+            navigator.geolocation.getCurrentPosition(
+              (pos) => {
+                setMyPosition([pos.coords.latitude, pos.coords.longitude]);
+              },
+              (err) =>
+                setMyPositionError(`Ошибка(${err.code}): ${err.message}`),
+              { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true }
+            );
+          }
+        });
+    } else {
+      WebApp.showAlert("Geolocation is not supported in your browser.");
+    }
+  }
 
   return (
     <div className="App">
