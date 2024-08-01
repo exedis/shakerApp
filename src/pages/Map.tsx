@@ -49,6 +49,21 @@ export const MapLayout = observer(() => {
   const [mapState, setMapState] = useState(state);
   const mapRef = useRef(null);
 
+  //   const setCenterMapOnUserPosition = () => {
+  //     console.log("mapState?.ymaps", mapState?.ymaps);
+
+  //     mapState?.ymaps?.geolocation
+  //       ?.get({
+  //         // Выставляем опцию для определения положения по ip
+  //         provider: "yandex",
+  //         // Карта автоматически отцентрируется по положению пользователя.
+  //         mapStateAutoApply: true,
+  //       })
+  //       .then(function (result) {
+  //         mapRef.current?.geoObjects.add(result.geoObjects);
+  //         console.log("result.geoObjects", result.geoObjects);
+  //       });
+  //   };
   const onPlacemarkClick = (point) => () => {
     setMapState({ ...mapState, selectedPoint: point });
   };
@@ -61,6 +76,7 @@ export const MapLayout = observer(() => {
     mapRef.current?.events.add("boundschange", function (event) {
       setMapCenterNewCoords(event.originalEvent.newCenter);
     });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -147,6 +163,9 @@ export const MapLayout = observer(() => {
           Показать события около меня
         </button>
       )}
+      <button onClick={() => WebApp.showAlert(`position: ${userPosition}`)}>
+        тестовый алерт
+      </button>
     </div>
   );
 });

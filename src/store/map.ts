@@ -34,8 +34,11 @@ export class MapStore {
 
   setCenterMapOnUserPosition() {
     console.log("this.userPosition", this.userPosition);
-
-    this.setMapCenterNewCoords(this.userPosition);
+    try {
+      this.setMapCenterNewCoords(this.userPosition);
+    } catch (e) {
+      console.log("e1", e);
+    }
   }
 
   setMapCenterNewCoords = (newCoords) => {
@@ -43,12 +46,16 @@ export class MapStore {
   };
 
   setUserPosition() {
-    navigator.geolocation.getCurrentPosition(
-      (pos) =>
-        (this.userPosition = [pos.coords.latitude, pos.coords.longitude]),
-      (err) => console.error(`Ошибка(${err.code}): ${err.message}`),
-      { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true }
-    );
+    try {
+      navigator.geolocation.getCurrentPosition(
+        (pos) =>
+          (this.userPosition = [pos.coords.latitude, pos.coords.longitude]),
+        (err) => console.error(`Ошибка(${err.code}): ${err.message}`),
+        { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true }
+      );
+    } catch (e) {
+      console.log("e2", e);
+    }
   }
 
   //   setUser = (user: Nullable<UserResponse>) => {
