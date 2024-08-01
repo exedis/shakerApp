@@ -93,6 +93,17 @@ export const MapLayout = observer(() => {
     controls: [],
   };
 
+  const [myPosition, setMyPosition] = useState([]);
+  const getMyPosition = () => {
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setMyPosition([pos.coords.latitude, pos.coords.longitude]);
+      },
+      (err) => console.error(`Ошибка(${err.code}): ${err.message}`),
+      { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true }
+    );
+  };
+
   return (
     <div className="App">
       <Map
@@ -165,6 +176,14 @@ export const MapLayout = observer(() => {
       )}
       <button onClick={() => WebApp.showAlert(`position: ${userPosition}`)}>
         тестовый алерт
+      </button>
+      <button
+        onClick={() => {
+          getMyPosition();
+          WebApp.showAlert(`position: ${myPosition}`);
+        }}
+      >
+        тестовый алерт2
       </button>
     </div>
   );
