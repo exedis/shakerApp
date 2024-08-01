@@ -1,13 +1,34 @@
 import { Path } from "@consts/path";
 import React from "react";
-import { LinkStyled, NavbarWrapper } from "./Navbar.styles";
+import {
+  LinkContent,
+  LinkStyled,
+  LinkTitle,
+  NavbarWrapper,
+} from "./Navbar.styles";
+import { GrList, GrMap, GrWorkshop } from "react-icons/gr";
 
 export const Navbar = () => {
   return (
     <NavbarWrapper>
-      <LinkStyled to={Path.TO_HOME}>События на карте</LinkStyled>
-      <LinkStyled to={Path.TO_EVENTS}>События списком</LinkStyled>
-      <LinkStyled to={Path.TO_PROFILE}>Профиль</LinkStyled>
+      <LinkStyled to={Path.TO_HOME}>
+        <LinkContent>
+          <GrMap />
+          <LinkTitle>Карта</LinkTitle>
+        </LinkContent>
+      </LinkStyled>
+      <LinkStyled to={Path.TO_EVENTS}>
+        <LinkContent>
+          <GrList />
+          <LinkTitle>Список</LinkTitle>
+        </LinkContent>
+      </LinkStyled>
+      <LinkStyled to={Path.TO_PROFILE}>
+        <LinkContent>
+          <GrWorkshop />
+          <LinkTitle>Профиль</LinkTitle>
+        </LinkContent>
+      </LinkStyled>
     </NavbarWrapper>
   );
 };

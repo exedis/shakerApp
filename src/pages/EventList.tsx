@@ -6,17 +6,25 @@ import styled from "@emotion/styled";
 export const EventList = () => {
   const eventTpl = (event: EventType) => {
     return (
-      <EventBlock>
+      <EventBlock key={event.id}>
         <EventImage>
           <img src="./mapIcon.png" alt="icon" width={30} />
         </EventImage>
         <div>
-          <div>{event.name}</div>
+          <div>{event.title}</div>
           <div>{event.description}</div>
         </div>
       </EventBlock>
     );
   };
+
+  // const { first_name, last_name, username } = WebApp.initDataUnsafe.user;
+  // console.log(
+  //   "first_name, last_name, username,",
+  //   first_name,
+  //   last_name,
+  //   username
+  // );
 
   return (
     <div>

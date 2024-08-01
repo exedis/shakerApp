@@ -9,5 +9,13 @@ export const NavbarWrapper = styled.div`
 
 export const LinkStyled = styled(Link)`
   margin: 4px;
+`;
+
+export const LinkTitle = styled.div`
   font-size: 14px;
+  margin-left: 6px;
+`;
+export const LinkContent = styled.div`
+  display: flex;
+  align-items: center;
 `;

@@ -18,7 +18,7 @@ export const LayoutWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 10px;
-  height: 96dvh;
+  height: 100dvh;
   box-sizing: border-box;
 `;
 

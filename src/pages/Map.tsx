@@ -1,0 +1,152 @@
+import React, { useEffect, useRef, useState } from "react";
+import ReactDOMServer from "react-dom/server";
+import { Map, Clusterer, Placemark, ZoomControl } from "@pbe/react-yandex-maps";
+import { EventData } from "@components/Events/EventList";
+import { hydrateRoot } from "react-dom/client";
+import WebApp from "@twa-dev/sdk";
+import { observer } from "mobx-react-lite";
+import { useStores } from "@store";
+import { MapEventWindow } from "@components/Map/MapEventWindow/MapEventWindow";
+
+const BalloonContentLayout = (layoutFactory, Component) => {
+  const html = ReactDOMServer.renderToString(Component);
+  const Layout = layoutFactory?.createClass(`<div id="balloon">${html}</div>`, {
+    build: function () {
+      Layout.superclass.build.call(this);
+    },
+  });
+
+  return Layout;
+};
+
+const Balloon = (props) => {
+  return (
+    <div>
+      <h1>Test {props.id}</h1>
+      <button>Click me</button>
+    </div>
+  );
+};
+
+export const MapLayout = observer(() => {
+  const {
+    mapStore: {
+      setCenterMapOnUserPosition,
+      centerMapCoordinates,
+      setMapCenterNewCoords,
+      attach,
+      detach,
+      userPosition,
+    },
+  } = useStores();
+
+  const state = {
+    ymaps: null,
+    selectedPoint: null,
+  };
+  const viewportStableHeight = WebApp.viewportStableHeight;
+  const mapHeight = viewportStableHeight * 0.6;
+  const [mapState, setMapState] = useState(state);
+  const mapRef = useRef(null);
+
+  const onPlacemarkClick = (point) => () => {
+    setMapState({ ...mapState, selectedPoint: point });
+  };
+
+  useEffect(() => {
+    mapRef.current?.setCenter(centerMapCoordinates, 14);
+  }, [centerMapCoordinates]);
+
+  useEffect(() => {
+    mapRef.current?.events.add("boundschange", function (event) {
+      setMapCenterNewCoords(event.originalEvent.newCenter);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    attach();
+    return detach;
+  }, [attach, detach]);
+
+  const { selectedPoint, ymaps } = mapState;
+
+  const mapStateDef = {
+    center: centerMapCoordinates,
+    zoom: 12,
+    controls: [],
+  };
+
+  return (
+    <div className="App">
+      <Map
+        width={"100%"}
+        height={mapHeight}
+        defaultState={mapStateDef}
+        onLoad={(ymaps) => setMapState({ ...mapState, ymaps })}
+        instanceRef={mapRef}
+      >
+        <Clusterer
+          options={{
+            preset: "islands#invertedVioletClusterIcons",
+            groupByCoordinates: false,
+            balloonPanelMaxMapArea: Infinity,
+          }}
+        >
+          {ymaps &&
+            EventData.map((point, index) => (
+              <Placemark
+                modules={["geoObject.addon.balloon", "geoObject.addon.hint"]}
+                key={index}
+                geometry={point.coords}
+                onBalloonOpen={() => {
+                  hydrateRoot(
+                    document.getElementById("balloon"),
+                    <Balloon id={point.title} />
+                  );
+                }}
+                onClick={onPlacemarkClick(point)}
+                options={{
+                  balloonContentLayout: BalloonContentLayout(
+                    ymaps.templateLayoutFactory,
+                    <Balloon />
+                  ),
+                  balloonPanelMaxMapArea: Infinity,
+                }}
+              />
+            ))}
+        </Clusterer>
+        <Placemark
+          geometry={userPosition}
+          options={{
+            zIndex: 9,
+            iconLayout: "default#image",
+            iconImageSize: [30, 42],
+            // Смещение левого верхнего угла иконки относительно
+            // её "ножки" (точки привязки).
+            iconImageOffset: [-5, -38],
+            iconImageHref: "./vite.svg",
+          }}
+        />
+        <ZoomControl options={{ position: { left: 10, top: 50 } }} />
+        {/* <GeolocationControl options={{ float: "left" }} /> */}
+      </Map>
+      <div id="test" />
+      {selectedPoint && (
+        <MapEventWindow
+          title={selectedPoint.title}
+          description={selectedPoint.description}
+          eventCoords={selectedPoint.coords}
+          userCoords={userPosition}
+          onClose={() => setMapState({ ...mapState, selectedPoint: null })}
+        />
+      )}
+      <br />
+      {!selectedPoint && (
+        <button onClick={setCenterMapOnUserPosition}>
+          Показать события около меня
+        </button>
+      )}
+    </div>
+  );
+});
