@@ -191,9 +191,6 @@ export const MapLayout = observer(() => {
           Показать события около меня
         </button>
       )}
-      <button onClick={() => WebApp.showAlert(`position: ${userPosition}`)}>
-        тестовый алерт
-      </button>
       <button
         onClick={() => {
           getMyPosition();
