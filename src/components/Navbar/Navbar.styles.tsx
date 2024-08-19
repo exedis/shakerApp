@@ -5,6 +5,7 @@ export const NavbarWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
+  padding-bottom: 6px;
 `;
 
 export const LinkStyled = styled(Link)`

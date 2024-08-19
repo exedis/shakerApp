@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes as Switch } from "react-router-dom";
 import { Path } from "@consts/path";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -11,13 +11,18 @@ import { Profile } from "@pages/Profile";
 import { YMaps } from "@pbe/react-yandex-maps";
 import { MapLayout } from "@pages/Map";
 import { stores, StoresContext } from "@store";
-// import WebApp from "@twa-dev/sdk";
+import WebApp from "@twa-dev/sdk";
+import { CreateEvent } from "@pages/CreateEvent";
 
 const cacheEmotion = createCache({
   key: "shaker",
 });
 
 function App() {
+  useEffect(() => {
+    WebApp.ready();
+  }, []);
+
   return (
     <StoresContext.Provider value={stores}>
       <TonConnectUIProvider manifestUrl="https://exedis.github.io/shakerApp/manifest.json">
@@ -26,13 +31,12 @@ function App() {
             <Switch>
               <Route
                 path={Path.TO_HOME}
+                index
                 element={
                   <Layout>
                     <YMaps
                       query={{ apikey: "cf9ae4bb-ef7b-4c05-acd6-cfa7ee09955e" }}
                     >
-                      {" "}
-                      {/* <Main /> */}
                       <MapLayout />
                     </YMaps>
                   </Layout>
@@ -51,6 +55,14 @@ function App() {
                 element={
                   <Layout>
                     <Profile />
+                  </Layout>
+                }
+              />
+              <Route
+                path={Path.TO_CREATE_EVENT}
+                element={
+                  <Layout>
+                    <CreateEvent />
                   </Layout>
                 }
               />

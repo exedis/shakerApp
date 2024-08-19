@@ -95,6 +95,7 @@ export const MapLayout = observer(() => {
 
   const [myPosition, setMyPosition] = useState([]);
   const [myPositionError, setMyPositionError] = useState("");
+  console.log("myPositionError", myPositionError);
 
   function getMyPosition() {
     if (navigator.geolocation) {
@@ -110,8 +111,9 @@ export const MapLayout = observer(() => {
               (pos) => {
                 setMyPosition([pos.coords.latitude, pos.coords.longitude]);
               },
-              (err) =>
-                setMyPositionError(`Ошибка(${err.code}): ${err.message}`),
+              (err) => {
+                setMyPositionError(`Ошибка(${err.code}): ${err.message}`);
+              },
               { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true }
             );
           }
@@ -194,7 +196,7 @@ export const MapLayout = observer(() => {
       <button
         onClick={() => {
           getMyPosition();
-          WebApp.showAlert(`position: ${myPosition} ${myPositionError}`);
+          WebApp.showAlert(`position: ${myPosition} ${WebApp.platform}`);
         }}
       >
         тестовый алерт2
