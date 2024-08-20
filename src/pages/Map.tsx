@@ -77,6 +77,8 @@ export const MapLayout = observer(() => {
       setMapCenterNewCoords(event.originalEvent.newCenter);
     });
 
+    // mapRef.current?.geolocation.get();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
