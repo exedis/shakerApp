@@ -173,7 +173,7 @@ export const MapLayout = observer(() => {
             // Смещение левого верхнего угла иконки относительно
             // её "ножки" (точки привязки).
             iconImageOffset: [-5, -38],
-            iconImageHref: "./vite.svg",
+            iconImageHref: "./mapPoint.svg",
           }}
         />
         <ZoomControl options={{ position: { left: 10, top: 50 } }} />
