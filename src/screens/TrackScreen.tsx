@@ -11,7 +11,7 @@ export const TrackScreen = observer(() => {
   return (
     <div>
       {isFetching ? (
-        <>Загрузка</>
+        <>Загрузка...</>
       ) : (
         <>
           <div>
