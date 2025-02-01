@@ -13,9 +13,13 @@
     "@babel/plugin-proposal-decorators": "^7.24.7",
     "@emotion/babel-plugin": "^11.11.0",
     "@tonconnect/ui-react": "^2.0.6",
+    "@twa-dev/sdk": "^8.0.1",
     "@vitejs/plugin-basic-ssl": "^1.1.0",
+    "axios": "^1.7.9",
+    "dns": "^0.2.2",
     "mobx": "^6.13.6",
     "mobx-react-lite": "^4.1.0",
+    "querystring": "^0.2.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-h5-audio-player": "^3.10.0-rc.1",
@@ -23,6 +27,7 @@
     "vite-tsconfig-paths": "^4.3.2"
   },
   "devDependencies": {
+    "@types/node": "^22.13.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
