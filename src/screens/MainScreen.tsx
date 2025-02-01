@@ -29,7 +29,7 @@ export const MainScreen = observer(() => {
   // }
   return (
     <div>
-      <h1>Музыкальный плеер</h1>
+      <h1>Спиок треков</h1>
       <ul>
         {trackList.map((track) => (
           <li key={track.uuid} onClick={() => handleTrackClick(track)}>
