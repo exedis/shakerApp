@@ -5,12 +5,12 @@ import AudioPlayer from "react-h5-audio-player";
 
 export const TrackScreen = observer(() => {
   const {
-    TrackStore: { currentTrack, isFetching },
+    TrackStore: { currentTrack, isActiveTrackExist },
   } = useStores();
 
   return (
     <div>
-      {isFetching ? (
+      {!isActiveTrackExist ? (
         <>Загрузка...</>
       ) : (
         <>

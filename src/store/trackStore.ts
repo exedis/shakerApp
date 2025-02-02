@@ -6,12 +6,15 @@ export class TrackStore {
 
   currentTrack = null;
 
+  isActiveTrackExist = false;
+
   isFetching = false;
 
   constructor() {
     makeObservable(this, {
       currentTrack: observable,
       isFetching: observable,
+      isActiveTrackExist: observable,
       attach: action.bound,
       detach: action.bound,
       setCurrentTrack: action.bound,
@@ -33,6 +36,7 @@ export class TrackStore {
   setCurrentTrack(track): void {
     console.log("set");
     this.currentTrack = track;
+    this.isActiveTrackExist = true;
   }
 
   detach(): void {
