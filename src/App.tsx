@@ -19,7 +19,7 @@ function App() {
         <div>Все треки</div>
         <Router basename="/">
           <Switch>
-            <Route path={Path.TO_HOME} element={<MainScreen />} />
+            <Route index path={Path.TO_HOME} element={<MainScreen />} />
             <Route path={Path.TO_TRACK} element={<TrackScreen />} />
           </Switch>
         </Router>
