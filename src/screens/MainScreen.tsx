@@ -31,20 +31,12 @@ export const MainScreen = observer(() => {
     <div>
       <h1>Спиок треков</h1>
       <ul>
-        {trackList.map((track) => (
-          <li key={track.uuid} onClick={() => handleTrackClick(track)}>
+        {trackList.map((track, index) => (
+          <li key={index} onClick={() => handleTrackClick(track)}>
             {track.artist} - {track.title}
           </li>
         ))}
       </ul>
-      {/* {currentTrack && (
-        <div>
-          <h2>
-            Сейчас играет: {currentTrack.artist} {currentTrack.title}
-          </h2>
-          <img src={currentTrack.coverPath} alt="" width={30} height={30} />
-        </div>
-      )} */}
     </div>
   );
 });

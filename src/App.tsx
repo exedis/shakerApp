@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes as Switch } from "react-router-dom";
 import { Path } from "@consts/path";
 import { MainScreen } from "@screens/MainScreen";
@@ -6,12 +6,17 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
 import { stores, StoresContext } from "@store";
 import { TrackScreen } from "@screens/TrackScreen";
+import WebApp from "@twa-dev/sdk";
 
 function App() {
+  useEffect(() => {
+    WebApp.ready();
+  }, []);
+
   return (
     <StoresContext.Provider value={stores}>
-      <TonConnectUIProvider manifestUrl="https://<YOUR_APP_URL>/tonconnect-manifest.json">
-        <Router>
+      <TonConnectUIProvider manifestUrl="https://exedis.github.io/shakerApp/tonconnect-manifest.json">
+        <Router basename="/">
           <Switch>
             <Route path={Path.TO_HOME} element={<MainScreen />} />
             <Route path={Path.TO_TRACK} element={<TrackScreen />} />
