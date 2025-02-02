@@ -16,6 +16,7 @@ function App() {
   return (
     <StoresContext.Provider value={stores}>
       <TonConnectUIProvider manifestUrl="https://exedis.github.io/shakerApp/tonconnect-manifest.json">
+        <div>Все треки</div>
         <Router basename="/">
           <Switch>
             <Route path={Path.TO_HOME} element={<MainScreen />} />
