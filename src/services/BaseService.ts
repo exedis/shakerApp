@@ -34,7 +34,8 @@ export const noticeInterceptor = (
 export const axiosInstance: AxiosInstance = axios.create({
   timeout: 300000,
   headers: { Accept: "application/json" },
-  baseURL: process.env.APP_SERVER_HOST || "http://localhost:3000",
+  baseURL:
+    process.env.APP_SERVER_HOST || "https://dsjw8ld8-3000.euw.devtunnels.ms/",
   withCredentials: true,
 });
 
