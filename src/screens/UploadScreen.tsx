@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export const UploadScreen = observer(() => {
   const {
-    AuthStore: { user },
+    UserStore: { user },
   } = useStores();
   const navigate = useNavigate();
 
