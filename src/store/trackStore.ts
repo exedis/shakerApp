@@ -1,50 +1,30 @@
 import { TrackService } from "@services/TrackService";
 import { action, flow, makeObservable, observable } from "mobx";
+import { Track } from "@src/types/track";
 
 export class TrackStore {
-  trackList = [];
-
-  currentTrack = null;
-
-  isActiveTrackExist = false;
+  trackList: Track[] = [];
 
   isFetching = false;
 
   constructor() {
     makeObservable(this, {
-      currentTrack: observable,
       isFetching: observable,
-      isActiveTrackExist: observable,
       attach: action.bound,
       detach: action.bound,
-      setCurrentTrack: action.bound,
-      toggleTrackFavorite: action,
-      loadTracks: flow.bound,
+      fetchTracks: flow.bound,
     });
   }
 
   attach() {
-    // this.favorites = library.filter((track) => track.rating === 1);
-    this.loadTracks();
-  }
-
-  toggleTrackFavorite(track): void {
-    console.log("track", track);
-    // this.favorites = library.filter((track) => track.rating === 1);
-  }
-
-  setCurrentTrack(track): void {
-    console.log("set");
-    this.currentTrack = track;
-    this.isActiveTrackExist = true;
+    this.fetchTracks();
   }
 
   detach(): void {
-    // this.favorites = [];
     this.trackList = [];
   }
 
-  *loadTracks() {
+  *fetchTracks() {
     try {
       this.isFetching = true;
 

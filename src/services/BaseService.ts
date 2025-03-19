@@ -5,6 +5,9 @@ import axios, {
   AxiosPromise,
   AxiosRequestConfig,
 } from "axios";
+import { config } from "@src/config";
+import { TOKEN_TITLE } from "@src/types/common";
+import { stores } from "@store"; // Предполагается, что у вас есть доступ к хранилищу
 
 export const noticeInterceptor = (
   error: AxiosError<{ disableGlobalNotice: boolean; message: string }>
@@ -31,21 +34,36 @@ export const noticeInterceptor = (
   }
 };
 
+// export const logoutInterceptor = async (error: AxiosError) => {
+//   if (error.response?.status === 401) {
+//     const refreshSuccess = await stores.AuthStore.tokenRefresh();
+//     if (!refreshSuccess) {
+//       stores.AuthStore.logout();
+//     }
+//   }
+// };
+
 export const axiosInstance: AxiosInstance = axios.create({
   timeout: 300000,
   headers: { Accept: "application/json" },
   baseURL:
-    process.env.APP_SERVER_HOST || "https://dsjw8ld8-3000.euw.devtunnels.ms/",
+    config.VITE_APP_SERVER_HOST || "https://dsjw8ld8-3000.euw.devtunnels.ms/",
   withCredentials: true,
+});
+
+axiosInstance.interceptors.request.use((config) => {
+  const token = localStorage.getItem(TOKEN_TITLE);
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
 
 axiosInstance.interceptors.response.use(
   (response) => Promise.resolve(response),
   (error) => {
     // logoutInterceptor(error);
-
     noticeInterceptor(error);
-
     return Promise.reject(error);
   }
 );

@@ -1,42 +1,32 @@
 import React, { useEffect } from "react";
-import "react-h5-audio-player/lib/styles.css";
+import { TrackList } from "@components/TrackList/TrackList";
+import { Layout } from "@src/theme/Layout";
 import { observer } from "mobx-react-lite";
 import { useStores } from "@store";
-import { useNavigate } from "react-router-dom";
-import { Path } from "@consts/path";
 
 export const MainScreen = observer(() => {
   const {
-    TrackStore: { trackList, attach, detach, setCurrentTrack, isFetching },
+    UserStore: { user, fetchUser },
   } = useStores();
-  const navigate = useNavigate();
+  console.log("user1", user);
   useEffect(() => {
-    attach();
-    return () => detach();
-  }, [attach, detach]);
+    // UseAuthorized();
+    if (!user) {
+      fetchUser();
+      console.log("fetch");
+    }
+  }, []);
 
-  const handleTrackClick = (track) => {
-    setCurrentTrack(track);
-    navigate(Path.TO_TRACK);
-  };
+  // const navigate = useNavigate();
 
-  if (isFetching) {
-    return <div>Загрузка треков...</div>;
-  }
-
-  // if (error) {
-  //   return <div>Ошибка: {error}</div>;
+  // if (!user?.id) {
+  //   navigate(Path.TO_AUTH);
   // }
+  console.log("user data main screen", user);
+
   return (
-    <div>
-      <h1>Спиок треков</h1>
-      <ul>
-        {trackList.map((track, index) => (
-          <li key={index} onClick={() => handleTrackClick(track)}>
-            {track.artist} - {track.title}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Layout>
+      <TrackList />
+    </Layout>
   );
 });

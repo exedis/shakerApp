@@ -1,11 +1,23 @@
 import { createContext, useContext } from "react";
 import { TrackStore } from "./trackStore";
+import { UploadStore } from "./uploadStore";
+import { PlayerStore } from "./playerStore";
+import { AuthStore } from "./authStore";
+import { UserStore } from "./userStore";
 
 const createStore = () => {
   const trackStore = new TrackStore();
+  const uploadStore = new UploadStore();
+  const playerStore = new PlayerStore();
+  const userStore = new UserStore();
+  const authStore = new AuthStore(userStore);
 
   return {
+    AuthStore: authStore,
+    PlayerStore: playerStore,
     TrackStore: trackStore,
+    UploadStore: uploadStore,
+    UserStore: userStore,
   };
 };
 

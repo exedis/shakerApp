@@ -6,7 +6,6 @@ export class PlaylistStore {
   constructor() {
     makeObservable(this, {
       playlists: observable,
-      // setActiveQueue: action.bound,
     });
   }
 }
