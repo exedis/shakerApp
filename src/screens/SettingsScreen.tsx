@@ -1,22 +1,24 @@
 import React from "react";
 import { Layout } from "@src/theme/Layout";
 import { useStores } from "@store";
-import { useNavigate } from "react-router-dom";
-import { Path } from "@consts/path";
 import { FormatDate } from "@utils/FormatDate";
+import WebApp from "@twa-dev/sdk";
 
 export const SettingsScreen = () => {
+  const data = WebApp?.initData;
+
   const {
     AuthStore: { logout },
     UserStore: { user },
   } = useStores();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  if (!user?.id) {
-    navigate(Path.TO_AUTH);
-  }
+  // if (!user?.id) {
+  //   navigate(Path.TO_AUTH);
+  // }
   return (
     <Layout>
+      {JSON.stringify(data)}
       <div>
         <div>О пользователе</div>
         <div>Имя пользователя {user?.username}</div>

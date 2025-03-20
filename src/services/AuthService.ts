@@ -10,7 +10,7 @@ export class AuthService extends ServiceBase {
   };
 
   static async login(param): Promise<unknown> {
-    const { data } = await this.post<unknown>("/login", { chatId: param });
+    const { data } = await this.post<unknown>("/login", { initData: param });
     return data;
   }
 

@@ -7,7 +7,6 @@ import axios, {
 } from "axios";
 import { config } from "@src/config";
 import { TOKEN_TITLE } from "@src/types/common";
-import { stores } from "@store"; // Предполагается, что у вас есть доступ к хранилищу
 
 export const noticeInterceptor = (
   error: AxiosError<{ disableGlobalNotice: boolean; message: string }>
@@ -47,7 +46,7 @@ export const axiosInstance: AxiosInstance = axios.create({
   timeout: 300000,
   headers: { Accept: "application/json" },
   baseURL:
-    config.VITE_APP_SERVER_HOST || "https://dsjw8ld8-3000.euw.devtunnels.ms/",
+    config.VITE_APP_SERVER_HOST || "https://dsjw8ld8-3003.euw.devtunnels.ms/",
   withCredentials: true,
 });
 

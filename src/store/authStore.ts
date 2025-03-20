@@ -31,10 +31,10 @@ export class AuthStore {
     this.verifyCode = code;
   }
 
-  *login(tgApiChatId: number) {
+  *login(data: string) {
     this.isFetching = true;
     try {
-      yield AuthService.login(tgApiChatId);
+      yield AuthService.login(data);
     } catch (e) {
       console.error("Ошибка авторизации", e);
     } finally {
