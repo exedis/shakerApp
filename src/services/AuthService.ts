@@ -3,7 +3,7 @@ import { ServiceBase } from "./BaseService";
 import { Token, VerifyParams } from "@src/types/auth";
 
 export class AuthService extends ServiceBase {
-  protected static BASE_URL = "/auth";
+  protected static BASE_URL = "auth";
 
   protected static HEADERS = {
     headers: { Authorization: `Bearer ${localStorage.getItem(TOKEN_TITLE)}` },
