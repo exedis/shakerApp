@@ -46,7 +46,7 @@ export const axiosInstance: AxiosInstance = axios.create({
   timeout: 300000,
   headers: { Accept: "application/json" },
   baseURL:
-    config.VITE_APP_SERVER_HOST || "https://dsjw8ld8-3003.euw.devtunnels.ms/",
+    config.VITE_APP_SERVER_HOST || "https://dsjw8ld8-3003.euw.devtunnels.ms",
   withCredentials: true,
 });
 
