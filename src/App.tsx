@@ -29,7 +29,7 @@ function App() {
       <TonConnectUIProvider manifestUrl="https://exedis.github.io/shakerApp/tonconnect-manifest.json">
         <CacheProvider value={cacheEmotion}>
           {/* <Router basename="/"> */}
-          <Router basename="/shakerApp/">
+          <Router basename="/shakerApp">
             <Switch>
               <Route
                 path={Path.TO_HOME}
