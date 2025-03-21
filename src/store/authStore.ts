@@ -31,14 +31,21 @@ export class AuthStore {
     this.verifyCode = code;
   }
 
-  *login(data: string) {
+  *login(initData: string, userData: unknown) {
     this.isFetching = true;
     try {
-      yield AuthService.login(data);
+      const token = yield AuthService.login({
+        initData: initData,
+        user: userData,
+      });
+      localStorage.setItem(TOKEN_TITLE, token);
+      yield this.userStore.fetchUser();
+      this.isAuthendificated = true;
     } catch (e) {
       console.error("Ошибка авторизации", e);
     } finally {
       this.isFetching = false;
+      window.location.replace(Path.TO_HOME);
     }
   }
 

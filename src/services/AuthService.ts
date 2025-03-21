@@ -1,6 +1,7 @@
 import { TOKEN_TITLE } from "@src/types/common";
 import { ServiceBase } from "./BaseService";
 import { Token, VerifyParams } from "@src/types/auth";
+// import { initData } from "@telegram-apps/sdk-react";
 
 export class AuthService extends ServiceBase {
   protected static BASE_URL = "auth";
@@ -9,8 +10,11 @@ export class AuthService extends ServiceBase {
     headers: { Authorization: `Bearer ${localStorage.getItem(TOKEN_TITLE)}` },
   };
 
-  static async login(param): Promise<unknown> {
-    const { data } = await this.post<unknown>("/login", { initData: param });
+  static async login(param): Promise<Token> {
+    const { data } = await this.post<Token>("/login", {
+      initData: param.initData,
+      user: param.user,
+    });
     return data;
   }
 
