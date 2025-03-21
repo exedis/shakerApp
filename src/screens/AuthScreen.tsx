@@ -30,10 +30,11 @@ export const AuthScreen: React.FC = observer(() => {
   // });
 
   // const url = "https://oauth.telegram.org/auth?" + searchParams.toString();
-
+  console.log("data", data);
   return (
     <Layout>
       <div>
+        {data}
         <button onClick={() => login(data)}>Войти через Telegram</button>
 
         <br />
